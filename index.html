@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Captain Kahuna: Premium surf and island clothing. Shop graphic tees, hoodies, board shorts, and more.">
+  <meta property="og:title" content="Captain Kahuna – Surf & Island Clothing">
+  <meta property="og:description" content="Premium surf and island clothing for the coastal lifestyle.">
+  <meta property="og:url" content="https://captainkahuna.com">
+  <meta name="theme-color" content="#0d47a1">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🏄</text></svg>">
+  <title>Captain Kahuna – Surf & Island Clothing</title>
+  <style>
+    :root {
+      --primary: #0d47a1;
+      --secondary: #ff6b35;
+      --accent: #ffd700;
+      --dark: #1a1a1a;
+      --light: #f5f5f5;
+      --text: #333;
+      --border: #ddd;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: #fff;
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    nav a:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 0.25rem;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem;
+        display: none;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+    }
+
+    main {
+      min-height: calc(100vh - 80px);
+    }
+
+    section {
+      scroll-margin-top: 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #1565c0 100%);
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .cta-button {
+      background: var(--secondary);
+      color: white;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .cta-button:hover {
+      background: #ff5722;
+      transform: translateY(-2px);
+    }
+
+    .cta-button:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 0.25rem;
+    }
+
+    #shop {
+      padding: 3rem 1rem;
+      background: var(--light);
+    }
+
+    .shop-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card:focus-within {
+      outline: 2px solid var(--primary);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      color: var(--secondary);
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .view-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .view-button:hover {
+      background: #0d2d7a;
+    }
+
+    .view-button:focus {
+      outline: 2px solid var(--secondary);
+      outline-offset: 0.25rem;
+    }
+
+    @media (max-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .product-image {
+        height: 150px;
+      }
+
+      #shop {
+        padding: 2rem 1rem;
+      }
+
+      .shop-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    #about {
+      padding: 3rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+    }
+
+    #about h2 {
+      font-size: 1.75rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    #about p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    #policies {
+      padding: 3rem 1rem;
+      background: var(--light);
+    }
+
+    .policies-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .policy-section h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .policy-section p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 800px) {
+      .policies-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer a:focus {
+      outline: 2px solid white;
+      outline-offset: 0.25rem;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">⛵ Captain Kahuna</div>
+    <button class="nav-toggle" aria-label="Toggle navigation menu">☰</button>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+      <a href="#policies">Policies</a>
+      <a href="mailto:hello@captainkahuna.com">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Ride the Waves</h1>
+      <p>Premium surf and island clothing for the coastal lifestyle</p>
+      <a href="#shop" class="cta-button">Shop Now</a>
+    </section>
+
+    <section id="shop">
+      <h2 class="shop-title">Our Collection</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image">👕</div>
+          <div class="product-info">
+            <div class="product-name">Graphic Tee</div>
+            <div class="product-price">$34.99</div>
+            <div class="product-desc">Classic crew neck with island vibes</div>
+            <button class="view-button">View</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🧥</div>
+          <div class="product-info">
+            <div class="product-name">Hoodie</div>
+            <div class="product-price">$64.99</div>
+            <div class="product-desc">Cozy pullover for cool beach nights</div>
+            <button class="view-button">View</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🩱</div>
+          <div class="product-info">
+            <div class="product-name">Board Shorts</div>
+            <div class="product-price">$54.99</div>
+            <div class="product-desc">Quick-dry shorts built for the water</div>
+            <button class="view-button">View</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🧢</div>
+          <div class="product-info">
+            <div class="product-name">Trucker Cap</div>
+            <div class="product-price">$29.99</div>
+            <div class="product-desc">Mesh back cap with embroidered logo</div>
+            <button class="view-button">View</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🌺</div>
+          <div class="product-info">
+            <div class="product-name">Hawaiian Shirt</div>
+            <div class="product-price">$59.99</div>
+            <div class="product-desc">Retro button-up with tropical print</div>
+            <button class="view-button">View</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🎒</div>
+          <div class="product-info">
+            <div class="product-name">Tote Bag</div>
+            <div class="product-price">$24.99</div>
+            <div class="product-desc">Durable canvas bag for everyday carry</div>
+            <button class="view-button">View</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About Captain Kahuna</h2>
+      <p>Born from a passion for surfing and island culture, Captain Kahuna brings authentic coastal style to your wardrobe. Every piece is designed for those who live for the ocean, the sun, and the laid-back island lifestyle.</p>
+      <p>We believe in quality craftsmanship, sustainable practices, and creating clothing that tells a story. Whether you're hitting the waves or catching the sunset, wear your island spirit with pride.</p>
+    </section>
+
+    <section id="policies">
+      <div class="policies-container">
+        <div class="policy-section">
+          <h3>Shipping</h3>
+          <p>We ship worldwide within 5–7 business days. Orders over $75 qualify for free shipping. Track your order in real time via email.</p>
+        </div>
+        <div class="policy-section">
+          <h3>Returns</h3>
+          <p>Not satisfied? Return within 30 days for a full refund. Items must be unworn and in original packaging. We cover return shipping.</p>
+        </div>
+        <div class="policy-section">
+          <h3>Privacy</h3>
+          <p>We respect your privacy. Your personal data is encrypted and never shared with third parties. See our full privacy policy at captainkahuna.com/privacy.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Captain Kahuna. All rights reserved.</p>
+    <p><a href="mailto:hello@captainkahuna.com">hello@captainkahuna.com</a></p>
+  </footer>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function () {
+      document.querySelector('nav').classList.toggle('active');
+    });
+
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function () {
+        document.querySelector('nav').classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
